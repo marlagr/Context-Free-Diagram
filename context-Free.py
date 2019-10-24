@@ -1,5 +1,5 @@
 numberOfVariable=int(input("Enter how many variables: "))
-numberOfTerminals=int(input("Enter how many terminal: "))
+numberOfTerminals=int(input("Enter how many terminal: (INITIAL TERMINAL S is ALREADY IN)"))
 numberOfRules=int(input("Enter how many rules: "))
 
 rules = [[] for j in range(numberOfVariable)]
@@ -90,16 +90,19 @@ def insertingTheString(insertionString):
                 return
             elif i.islower():
                 rightSideString.append(i)
-            elif i.isUpper:
+                print(rightSideString+leftSideString)
+            elif i.isupper():
                 queue.append(i)
+                foundUpperLetter = True
         else:
             if i == "3" :
                 leftSideString.append(i)
                 return
             elif i.islower():
                 leftSideString.append(i)
-            elif i.isUpper:
+            elif i.isupper():
                 queue.append(i)
+    
 
 
 
