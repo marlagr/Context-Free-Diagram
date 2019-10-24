@@ -16,7 +16,7 @@ print("-------SCANNING VARIABLES(NON-TERMINAL SYMBOLS)---------")
 for i in range(0, numberOfVariable):
     print("Set variables "+str(i+1)+" :")
     n=str(input())
-    variable.append(n)
+    variable.append(n.lower())
 variable.append("3")
 print(variable)
 
@@ -46,6 +46,18 @@ for i in range(0, numberOfRules):
     aux.append(n)
     rules.append(aux)
 print(rules)
+
+#     FUNCTION TO CHECK THE STRING
+
+def insertingTheString(insertionString):
+  print(insertionString)
+
+
+
+
+
+
+
 print("-------START WRITING THE RULES---------")
 bandera = False
 initial = False
@@ -53,16 +65,21 @@ while (bandera == False):
     aux = []
     if initial == False:
         print("-------AVAILABLE RULES:---------")
+        aux1 = []
         for indice, i in enumerate(rules):
-            aux1 = []
             if(i[0] == "S"):
-                print(indice)
+                print(indice+1)
                 print(i)
                 aux1.append(indice)
                 aux1.append(i)
-            n=int(input("Enter index for rule: "))
-            aux.append(aux1[n])
-            print(aux)
+        #print(aux1)
+        n=int(input("Enter index for rule: "))
+        aux.append(aux1[n])
+        print(aux)
+        #print(aux[0][1])
+        insertingTheString(aux[0][1])
+        initial = True
+            
             
         bandera = True
 
