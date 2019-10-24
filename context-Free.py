@@ -8,8 +8,9 @@ variable = []
 terminals = []
 rules = []
 
-rightSideString = ""
-leftSideString = ""
+rightSideString = []
+leftSideString = []
+queue = ["S"]
 
 #ESCANEO DE LAS VARIABLES(NON-TERMINAL SYMBOLS)
 print("-------SCANNING VARIABLES(NON-TERMINAL SYMBOLS)---------")
@@ -47,11 +48,58 @@ for i in range(0, numberOfRules):
     rules.append(aux)
 print(rules)
 
+
+
+#     FUNCTION TO MAP index with rule
+
+def mappingRules(lista, indice):
+  for indx, i in enumerate(lista):
+    if(i == indice):
+        return lista[indx+1]
+
+#     FUNCTION TO get the rule string from terminal
+def showingAvailableRules(term):
+    aux = []
+    print("-------AVAILABLE RULES:---------")
+    aux1 = []
+    for indice, i in enumerate(rules):
+        if(i[0] == term):
+            #print(indice+1)
+            #print(i)
+            aux1.append(indice)
+            aux1.append(i)
+    if aux1:
+        print(aux1)
+        n=int(input("Enter index for rule: "))
+        aux.append(mappingRules(aux1, n))
+        #print(aux)
+        #print(aux[0][1])
+        return aux[0][1]
+    else :
+        print("There are no more rules available")
+
+
 #     FUNCTION TO CHECK THE STRING
 
 def insertingTheString(insertionString):
-  print(insertionString)
-
+    foundUpperLetter = False
+    for i in insertionString:
+        if not foundUpperLetter:
+            if i == "3" :
+                rightSideString.append(i)
+                return
+            elif i.islower():
+                rightSideString.append(i)
+            elif i.isUpper:
+                queue.append(i)
+        else:
+            if i == "3" :
+                leftSideString.append(i)
+                return
+            elif i.islower():
+                leftSideString.append(i)
+            elif i.isUpper:
+                queue.append(i)
 
 
 
@@ -59,28 +107,10 @@ def insertingTheString(insertionString):
 
 
 print("-------START WRITING THE RULES---------")
-bandera = False
-initial = False
-while (bandera == False): 
-    aux = []
-    if initial == False:
-        print("-------AVAILABLE RULES:---------")
-        aux1 = []
-        for indice, i in enumerate(rules):
-            if(i[0] == "S"):
-                print(indice+1)
-                print(i)
-                aux1.append(indice)
-                aux1.append(i)
-        #print(aux1)
-        n=int(input("Enter index for rule: "))
-        aux.append(aux1[n])
-        print(aux)
-        #print(aux[0][1])
-        insertingTheString(aux[0][1])
-        initial = True
-            
-            
-        bandera = True
 
 
+while (queue): 
+    ruleString = showingAvailableRules(queue[0])
+    insertingTheString(ruleString)
+    queue.remove(queue[0])
+print(rightSideString+leftSideString)
