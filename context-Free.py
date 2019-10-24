@@ -1,5 +1,7 @@
+#DONE BY: IVAN CELIS A01703860 MARLA GALVAN A01701180
+
 numberOfVariable=int(input("Enter how many variables: "))
-numberOfTerminals=int(input("Enter how many terminal: (INITIAL TERMINAL S is ALREADY IN)"))
+numberOfTerminals=int(input("Enter how many terminals: "))
 numberOfRules=int(input("Enter how many rules: "))
 
 rules = [[] for j in range(numberOfVariable)]
@@ -10,7 +12,7 @@ rules = []
 
 rightSideString = []
 leftSideString = []
-queue = ["S"]
+queue = []
 
 #ESCANEO DE LAS VARIABLES(NON-TERMINAL SYMBOLS)
 print("-------SCANNING VARIABLES(NON-TERMINAL SYMBOLS)---------")
@@ -21,16 +23,18 @@ for i in range(0, numberOfVariable):
 variable.append("3")
 print(variable)
 
-
 #ESCANEO DE LAS TERMINALES
 print("-------SCANNING TERMINALS---------")
 for i in range(0, numberOfTerminals):
-    print("Start terminal 'S' is already in")
     print("Set terminal "+str(i+1)+" :")
     n=str(input())
     terminals.append(n.upper())
-terminals.append("S")
+
 print(terminals)
+
+#ESCANEO INITIAL VARIABLE
+n = str(input("Initial terminal:  "))
+queue.append(n.upper())
 
 #ESCANEO DE LAS REGLAS  
 print("-------SCANNING RULES---------")
@@ -86,7 +90,7 @@ def insertingTheString(insertionString):
     for i in insertionString:
         if not foundUpperLetter:
             if i == "3" :
-                rightSideString.append(i)
+                #rightSideString.append(i)
                 return
             elif i.islower():
                 rightSideString.append(i)
@@ -96,7 +100,7 @@ def insertingTheString(insertionString):
                 foundUpperLetter = True
         else:
             if i == "3" :
-                leftSideString.append(i)
+                #leftSideString.append(i)
                 return
             elif i.islower():
                 leftSideString.append(i)
